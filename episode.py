@@ -7,14 +7,15 @@ class Episode(Video):
 
         self.type = 'episode'
         try:
-            self.index = int(element.attrib['index'])
+            self.episode = int(element.attrib['index'])
             self.season = int(element.attrib['parentIndex'])
+            self.show_title = element.attrib['grandparentTitle']
         except KeyError as e:
             print "Missing key in element: ", e.message
 
     def __str__(self):
-        return "<Episode: %s (%dx%.2d)>" % (self.title, self.season, self.index)
+        return "<Episode: %s - %dx%.2d - %s>" % (self.show_title, self.season, self.episode, self.title)
 
     def __repr__(self):
-        return "<Episode: %s (%dx%.2d)>" % (self.title, self.season, self.index)
+        return "<Episode: %s - %dx%.2d - %s>" % (self.show_title, self.season, self.episode, self.title)
 
