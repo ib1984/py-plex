@@ -23,9 +23,7 @@ class Playlist(object):
         self.server.put("%s?uri=library://unknown/item%s" % (self.key, item.key))
 
     def remove(self, item):
-        # TODO: implement!
-        # curl "http://176.51.83.7:32400/playlists/20690/items/1193" -X DELETE
-        return None
+        self.server.delete("%s/%s" % (self.key,                                                                       item.element.attrib['playlistItemID']))
 
     def getContent(self):
         container = self.server.query(self.key)

@@ -29,6 +29,18 @@ class Server(object):
         except urllib2.URLerror, e:
             print e
 
+    def delete(self, path):
+        if path[0] == '/':
+            path = path[1:]
+
+        try:
+            opener = urllib2.build_opener(urllib2.HTTPHandler)
+            request = urllib2.Request("http://%s:%d/%s" % (self.address, self.port, path))
+            request.get_method = lambda: 'DELETE'
+            opener.open(request)
+        except urllib2.URLerror, e:
+            print e
+
     def execute(self, path):
         if path[0] == '/':
             path = path[1:]
