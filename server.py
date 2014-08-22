@@ -1,5 +1,6 @@
 from library import Library
 from client import Client
+from playlist import Playlist
 
 import urllib2
 from xml.etree.ElementTree import XML
@@ -15,6 +16,18 @@ class Server(object):
         self.address = address
         self.port = int(port)
 
+
+    def put(self, path):
+        if path[0] == '/':
+            path = path[1:]
+
+        try:
+            opener = urllib2.build_opener(urllib2.HTTPHandler)
+            request = urllib2.Request("http://%s:%d/%s" % (self.address, self.port, path))
+            request.get_method = lambda: 'PUT'
+            opener.open(request)
+        except urllib2.URLerror, e:
+            print e
 
     def execute(self, path):
         if path[0] == '/':
@@ -60,4 +73,10 @@ class Server(object):
         elem = self.query("/clients")
         clist = [Client(e, self) for e in elem]
         return clist
+
+    @property
+    def playlists(self):
+        elem = self.query("/playlists")
+        plist = [Playlist(e, self) for e in elem]
+        return plist
 
