@@ -62,7 +62,7 @@ class Show(object):
 
         prev = None
         for e in reversed(element):
-            if ('viewCount' in e.attrib) and (e.attrib['viewCount'] == '1'):
+            if ('viewCount' in e.attrib) and (e.attrib['viewCount'] >= '1'):
                 if prev == None:
                     return None
                 else:
