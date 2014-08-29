@@ -18,7 +18,7 @@ class Media(object):
             print "Missing key in element: ", e.message
 
     def __str__(self):
-        return "<Media)>"
+        return "<Media>"
 
     def __repr__(self):
         return "<Media>"

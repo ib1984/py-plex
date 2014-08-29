@@ -21,3 +21,6 @@ class Video(object):
 
     def __repr__(self):
         return "<Video: %s>" % (self.key)
+
+    def __eq__(self, other_video):
+        return self.__repr__() == other_video.__repr__()

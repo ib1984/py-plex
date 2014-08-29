@@ -19,3 +19,6 @@ class Episode(Video):
     def __repr__(self):
         return "<Episode: %s - %dx%.2d - %s>" % (self.show_title, self.season, self.episode, self.title)
 
+    def __eq__(self, other_episode):
+        return self.__repr__() == other_episode.__repr__()
+
