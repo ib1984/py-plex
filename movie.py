@@ -13,4 +13,6 @@ class Movie(Video):
     def __repr__(self):
         return "<Movie: %s (%d)>" % (self.title, self.year)
 
+    def __eq__(self, other_movie):
+        return self.__repr__() == other_movie.__repr__()
 
