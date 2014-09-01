@@ -19,6 +19,9 @@ class Playlist(object):
     def __repr__(self):
         return "<Playlist: %s>" % self.title
 
+    def __contains__(self, element):
+        return element in self.getContent()
+
     def append(self, item):
         self.server.put("%s?uri=library://unknown/item%s" % (self.key, item.key))
 
