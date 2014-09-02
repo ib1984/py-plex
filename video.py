@@ -12,7 +12,8 @@ class Video(object):
         self.summary = element.attrib['summary']
 
         self.viewed = ('viewCount' in element.attrib) and (element.attrib['viewCount'] >= '1')
-        self.offset = int(element.attrib['viewOffset']) if 'viewOffset' in element.attrib else 0
+        self.duration = int(element.attrib['duration']) / 1000 if 'duration' in element.attrib else 0
+        self.offset = int(element.attrib['viewOffset']) / 1000 if 'viewOffset' in element.attrib else 0
 
         self.media = [Media(e, self.server) for e in element.findall('.Media')]
 
