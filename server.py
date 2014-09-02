@@ -92,3 +92,10 @@ class Server(object):
         plist = [Playlist(e, self) for e in elem]
         return plist
 
+    def playlist(self, title):
+        for plist in self.playlists:
+            if plist.title.lower() == title.lower():
+                return plist
+
+        return None
+

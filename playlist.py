@@ -26,7 +26,8 @@ class Playlist(object):
         self.server.put("%s?uri=library://unknown/item%s" % (self.key, item.key))
 
     def remove(self, item):
-        self.server.delete("%s/%s" % (self.key,                                                                       item.element.attrib['playlistItemID']))
+        self.server.delete("%s/%s" % (self.key, 
+                                      item.element.attrib['playlistItemID']))
 
     def clear(self):
         self.server.delete(self.key)
